@@ -1,6 +1,3 @@
-class HeroPageAsserts {
-
-    heroTitle = "Tech Solutions to scale";
-}
-
-export default HeroPageAsserts;
+export const HERO_SECTION = {
+  HERO_TITLE: "Tech Solutions to scale",
+};
