@@ -17,7 +17,8 @@
   },
   "homepage": "https://github.com/VeselinDam/test-automation-framework#readme",
   "devDependencies": {
-    "cypress": "^14.0.3"
+    "cypress": "^14.0.3",
+    "cypress-wait-until": "^3.0.2"
   },
   "dependencies": {
     "cypress-real-events": "^1.14.0"

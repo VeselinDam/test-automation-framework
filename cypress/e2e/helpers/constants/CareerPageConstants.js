@@ -5,3 +5,6 @@ export const POSITION_NAMES = {
 export const TEAM = {
   ETON_DIGITAL: "EtonDigital",
 };
+export const COUNTRY = {
+  SERBIA: "Serbia",
+};

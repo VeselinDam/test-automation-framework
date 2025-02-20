@@ -1,34 +1,54 @@
 /// <reference types= "cypress" />
 
+import elementHelper from "../../e2e/helpers/ElementHelper";
+
 class CareerPage {
+  constructor() {
+    this.elementHelper = elementHelper;
+  }
+
   listOfPositions = "button.c-tag";
   careerCard = "div.c-careercard";
-  careerCardTitle = "h3";
-  careerCardTeam = "p";
+  careerCardTeam = "div.c-careercard p";
+  showMoreBtn = "div.u-txt--center span";
+  careerCardTitle = "div.c-careercard h3";
 
-  clickOnPosition(positionName, retries = 5) {
-    cy.get(this.listOfPositions)
-      .contains(positionName)
-      .should("be.visible")
-      .scrollIntoView({ block: "center", easing: "linear", duration: 500 })
-      .should("not.be.disabled")
-      .click()
-      .then(($element) => {
-        if (!$element.hasClass("is-active") && retries > 0) {
-          this.clickOnPosition(positionName, retries - 1);
-        }
-      });
+  selectItemToClick(positionName) {
+    this.elementHelper.clickOnItem(this.listOfPositions, positionName);
   }
 
   checkIfTheAppropriateTeamIsDisplayedForAppropriatePosition(
     specificPosition,
     specificTeam
   ) {
-    cy.get(this.careerCard).should("have.length", 1).within(() => {
-        if(cy.get(this.careerCardTitle).should("have.text", specificPosition)){
-            cy.get(this.careerCardTeam).contains(specificTeam).should("be.visible");
-        }
-    });
+    // ovo probaj da prepravis
+    cy.get(this.careerCard).should("have.length", 1);
+    if (cy.get(this.careerCardTitle).should("have.text", specificPosition)) {
+      cy.get(this.careerCardTeam).contains(specificTeam).should("be.visible");
+    }
+  }
+
+  clickOnShowMoreButtonUntilItsHidden() {
+    cy.waitUntil(
+      () =>
+        cy.get(this.showMoreBtn).then(($btn) => {
+          if ($btn.hasClass("hide")) {
+            return true;
+          } else {
+            cy.wrap($btn).scrollIntoView({ block: "center" }).click();
+            return false;
+          }
+        }),
+      {
+        timeout: 1000,
+        interval: 250,
+        errorMsg: "Button 'Show More' still visible.",
+      }
+    );
+  }
+
+  writeAllPositionTitleToTextFile(fileName) {
+    elementHelper.saveTextToFile(this.careerCard, fileName);
   }
 }
 

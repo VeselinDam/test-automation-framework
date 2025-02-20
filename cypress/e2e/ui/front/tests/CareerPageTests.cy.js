@@ -4,20 +4,32 @@ import CookieBotPage from "../../../../ui/pageobjects/CookieBotPage";
 import {
   POSITION_NAMES,
   TEAM,
+  COUNTRY
 } from "../../../helpers/constants/CareerPageConstants";
 
 describe("This section will cover all test cases for Career Page.", () => {
-  it("Verify that appropriate team is displayed for appropriate position", () => {
+  beforeEach(() => {
     cy.visit("/career");
-
+  });
+  it("Verify that appropriate team is displayed for appropriate position", () => {
     const cookieBot = new CookieBotPage();
     cookieBot.clickOnRejectButton();
 
     const careerPage = new CareerPage();
-    careerPage.clickOnPosition(POSITION_NAMES.QA);
+    careerPage.selectItemToClick(POSITION_NAMES.QA);
     careerPage.checkIfTheAppropriateTeamIsDisplayedForAppropriatePosition(
       POSITION_NAMES.SENIOR_QA_SPECIALIST,
       TEAM.ETON_DIGITAL
     );
   });
+
+  it("Find all position title for specific Country and save them to text file,", ()=>{
+    const cookieBot = new CookieBotPage();
+    cookieBot.clickOnRejectButton();
+
+    const careerPage = new CareerPage();
+    careerPage.selectItemToClick(COUNTRY.SERBIA);
+    careerPage.clickOnShowMoreButtonUntilItsHidden();
+    careerPage.writeAllPositionTitleToTextFile("AllPositionTitlesFromSerbia");
+  })
 });
