@@ -3,7 +3,7 @@ import CookieBotPage from "../../../../ui/pageobjects/CookieBotPage";
 import HomePage from "../../../../ui/pageobjects/homePage";
 import { HERO_SECTION } from "../../../helpers/asserts/HomePageAsserts";
 
-describe("This section will cover all test cases for HomaPage.", () => {
+describe("This section will cover all test cases for HomePage.", () => {
   it("Verify hero title text is correctly displayed on HomePage.", () => {
     cy.visit("/");
 
