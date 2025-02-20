@@ -17,16 +17,16 @@ Main branch: [main](https://github.com/VeselinDam/test-automation-framework)
 ### How to run tests:
 
 - (UI Mode)
-  In termina type `npx cypress open`, when Cypress open select "E2E testing" tab.
-  Choose browser.
-  In the Spec folder, select the test file you want to run.
+  * In termina type `npx cypress open`, when Cypress open select "E2E testing" tab.
+  * Choose browser.
+  * In the Spec folder, select the test file you want to run.
 
 - (Headless Mode)
-  Run all tests:
-  In termina type `npx cypress open`.
-  Run a specific test file:
-  In termina type `npx cypress run --spec "cypress/e2e/ui/front/tests/<file-name>.cy.js"`
+  * Run all tests:
+  * In termina type `npx cypress open`.
+  * Run a specific test file:
+  * In termina type `npx cypress run --spec "cypress/e2e/ui/front/tests/<file-name>.cy.js"`
 
 ### Author:
 
-- [Veselin Damnjanovic]
+- Veselin Damnjanovic
