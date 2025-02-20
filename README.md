@@ -22,9 +22,9 @@ Main branch: [main](https://github.com/VeselinDam/test-automation-framework)
   * In the Spec folder, select the test file you want to run.
 
 - (Headless Mode)
-  * Run all tests:
-  * In termina type `npx cypress open`.
-  * Run a specific test file:
+  - Run all tests:
+  * In termina type `npx cypress run`.
+  - Run a specific test file:
   * In termina type `npx cypress run --spec "cypress/e2e/ui/front/tests/<file-name>.cy.js"`
 
 ### Author:
