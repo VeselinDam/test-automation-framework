@@ -9,7 +9,7 @@ class CareerPage {
 
   listOfPositions = "button.c-tag";
   careerCard = "div.c-careercard";
-  careerCardTeam = "div.c-careercard p";
+  careerCardTeam = "p";
   showMoreBtn = "div.u-txt--center span";
   careerCardTitle = "div.c-careercard h3";
 
@@ -17,15 +17,12 @@ class CareerPage {
     this.elementHelper.clickOnItem(this.listOfPositions, positionName);
   }
 
-  checkIfTheAppropriateTeamIsDisplayedForAppropriatePosition(
-    specificPosition,
-    specificTeam
-  ) {
-    // ovo probaj da prepravis
-    cy.get(this.careerCard).should("have.length", 1);
-    if (cy.get(this.careerCardTitle).should("have.text", specificPosition)) {
-      cy.get(this.careerCardTeam).contains(specificTeam).should("be.visible");
-    }
+  getTeamForPosition(specificPosition) {
+    return cy.get(this.careerCardTitle)
+      .contains(specificPosition)
+      .should("be.visible")
+      .parents(this.careerCard)
+      .find(this.careerCardTeam);
   }
 
   clickOnShowMoreButtonUntilItsHidden() {

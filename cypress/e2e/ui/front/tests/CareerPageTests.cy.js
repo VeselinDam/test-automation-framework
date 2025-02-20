@@ -11,16 +11,21 @@ describe("This section will cover all test cases for Career Page.", () => {
   beforeEach(() => {
     cy.visit("/career");
   });
-  it("Verify that appropriate team is displayed for appropriate position", () => {
+  it.only("Verify that appropriate team is displayed for appropriate position", () => {
     const cookieBot = new CookieBotPage();
     cookieBot.clickOnRejectButton();
 
     const careerPage = new CareerPage();
     careerPage.selectItemToClick(POSITION_NAMES.QA);
-    careerPage.checkIfTheAppropriateTeamIsDisplayedForAppropriatePosition(
-      POSITION_NAMES.SENIOR_QA_SPECIALIST,
-      TEAM.ETON_DIGITAL
-    );
+    careerPage.getTeamForPosition(
+      POSITION_NAMES.SENIOR_QA_SPECIALIST
+    )
+    .then(($team) => {
+      expect(
+        $team.text(),
+        `Expected team for position ${POSITION_NAMES.SENIOR_QA_SPECIALIST}`
+      ).to.contain(TEAM.ETON_DIGITAL);
+    });;
   });
 
   it("Find all position title for specific Country and save them to text file,", ()=>{
